@@ -1,11 +1,13 @@
 package com.codigo.examen.repository;
 
 import com.codigo.examen.entity.Rol;
+import jakarta.transaction.UserTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.Set;
 
 public interface RolRepository extends JpaRepository<Rol,Long> {
-    Optional<Rol> findByNombreRol(String nombreRol);
+    Set<Rol> findByNombreRol(String nombreRol);
 
 }
