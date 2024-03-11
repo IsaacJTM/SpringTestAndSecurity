@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
+
+@Service
 public class JWTServiceImpl implements JWTService {
     @Override
     public String generarToken(UserDetails userDetails) {
