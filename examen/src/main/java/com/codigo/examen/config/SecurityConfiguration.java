@@ -1,5 +1,6 @@
 package com.codigo.examen.config;
 
+
 import com.codigo.examen.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -28,11 +29,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers("api/v1/autenticacion/**")
+                .authorizeHttpRequests(request -> request.requestMatchers("ms-examen/v1/autenticacion/**")
                         .permitAll()
-                        .requestMatchers("api/v1/admin/**").hasRole("ADMIN")
-                        .requestMatchers("api/v1/user/**").hasRole("USER")
-                        .anyRequest().authenticated())
+                          .requestMatchers("ms-examen/v1/admin/**").hasRole("ADMIN")
+                          .requestMatchers("ms-examen/v1/user/**").hasRole("USER")
+                          .anyRequest().authenticated())
                 .sessionManagement(managger -> managger.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class

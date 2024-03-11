@@ -1,6 +1,6 @@
 package com.codigo.examen.service.impl;
 
-import com.codigo.examen.entity.Rol;
+
 import com.codigo.examen.entity.Usuario;
 import com.codigo.examen.repository.RolRepository;
 import com.codigo.examen.repository.UsuarioRepository;
@@ -31,6 +31,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         usuario.setUsername(signUpRequest.getUsername());
         usuario.setEmail(signUpRequest.getEmail());
         usuario.setRoles(rolRepository.findByNombreRol("USER"));
+        usuario.setTelefono(signUpRequest.getTelefono());
+        usuario.setAccountnonexpire(true);
+        usuario.setAccountnonlocked(true);
+        usuario.setCredentialsnonexpired(true);
         usuario.setPassword(new BCryptPasswordEncoder().encode(signUpRequest.getPassword()));
         return usuarioRepository.save(usuario);
     }
@@ -41,6 +45,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         usuario.setUsername(signUpRequest.getUsername());
         usuario.setEmail(signUpRequest.getEmail());
         usuario.setRoles(rolRepository.findByNombreRol("ADMIN"));
+        usuario.setTelefono(signUpRequest.getTelefono());
+        usuario.setAccountnonexpire(true);
+        usuario.setAccountnonlocked(true);
+        usuario.setCredentialsnonexpired(true);
         usuario.setPassword(new BCryptPasswordEncoder().encode(signUpRequest.getPassword()));
         return usuarioRepository.save(usuario);
     }
@@ -57,4 +65,5 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         authenticationResponse.setToken(jwt);
         return authenticationResponse;
     }
+
 }

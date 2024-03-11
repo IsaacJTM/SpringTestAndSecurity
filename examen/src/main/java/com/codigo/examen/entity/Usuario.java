@@ -60,11 +60,11 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(getRolesNames().toString()));
+        return Set.of(new SimpleGrantedAuthority(getRolesNames().toString()));
     }
 
     @Override
-    public String getPassword() { return null; }
+    public String getPassword() { return password; }
 
     @Override
     public String getUsername() {
